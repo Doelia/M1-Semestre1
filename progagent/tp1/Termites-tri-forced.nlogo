@@ -54,14 +54,14 @@ to find-new-pile  ;; turtle procedure -- look for yellow patches
     [
       set heading towards posGreen
       fd 1
-      if  != posGreen
+      if one-of patches in-radius 1 != posGreen
       [find-new-pile]
     ]
     [
        set heading towards posYellow
       fd 1
-      ; si pas sur le patch
-      find-new-pile
+      if one-of patches in-radius 1 != posYellow
+      [find-new-pile]
     ]
 
 end
@@ -162,7 +162,7 @@ number
 number
 1
 2000
-512
+976
 1
 1
 NIL
@@ -177,7 +177,7 @@ density
 density
 0.0
 100.0
-43
+18
 1.0
 1
 %

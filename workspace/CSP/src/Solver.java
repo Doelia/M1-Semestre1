@@ -6,9 +6,8 @@ import java.util.TreeSet;
 
 public class Solver {
 
-	public CSP problem; // l'instance de CSP
-	private HashMap<String, Object> assignation; // codage d'une solution
-													// partielle ou totale
+	public CSP problem;
+	private HashMap<String, Object> assignation;
 
 	public Solver(CSP p) {
 		problem = p;
@@ -20,6 +19,43 @@ public class Solver {
 		return this.backtrack();
 	}
 	
+	private boolean toutesLesVariableDeLaContrainteSontAffectes(Constraint c) {
+		for (String var : c.getVariables()) {
+			if (!this.assignation.containsKey(var)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	
+	private boolean contrainteEstVerifiee(Constraint c) {
+		
+		if (!toutesLesVariableDeLaContrainteSontAffectes(c)) {
+			return true;
+		}
+		
+		for (ArrayList<Object> list : c.getValTuples()) { // Pour chaque tuple, [2, tutu]
+			for (int j = 0; j < list.size(); j++) { // pour chaque valeurs du tuple
+				String varTested = c.getVariables().get(j); // variable concernée
+				Object valueOfVar = this.assignation.get(varTested); // valeur actuelle
+				if (valueOfVar.equals(list.get(j))) { // si correspond, OK
+					return true;
+				}
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	/**
+	 * 
+	 * @param var la variable modifiée à tester
+	 * @param c une contrainte qui conteint la variable var
+	 * @return
+	 */
 	private boolean contrainteEstVerifiee(String var, Constraint c) {
 		
 		Object valueVar = this.assignation.get(var);
@@ -59,7 +95,6 @@ public class Solver {
 		return true;
 	}
 
-	// l'algo r�cursif
 	private HashMap<String, Object> backtrack() {
 		
 		if (this.assignation.size() == this.problem.getVarNumber()) {
@@ -70,16 +105,13 @@ public class Solver {
 		String chosenVar = this.chooseVar(this.problem.getVars(), this.assignation.keySet());
 		System.out.println("On choisit la variable "+chosenVar);
 		
-		// On essai de l'affecter avec toutes les variables possibles
 		for (Object val : this.tri(this.problem.getDom(chosenVar))) {
 			this.assignation.put(chosenVar, val);
 			System.out.println("On asigne "+chosenVar+" = "+val+";");
 			if (this.isConsistant(chosenVar)) { // Si contrainte validée
-				System.out.println("Contrainte vérifiée!");
-				HashMap<String, Object> retour = backtrack();
-				if (retour != null) {
-					return retour;
-				}
+				 HashMap<String, Object> affect = backtrack();
+				 if (affect.size() == this.problem.getVarNumber())
+					 return affect;
 			} else {
 				System.out.println("Pas vérifié :(");
 				this.assignation.remove(chosenVar);

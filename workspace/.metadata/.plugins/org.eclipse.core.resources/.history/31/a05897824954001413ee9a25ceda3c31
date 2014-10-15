@@ -1,0 +1,15 @@
+3
+x;2;1;3;4;5
+y;as;tutu;hep
+z;2;4;6;9
+2
+x;y
+5
+1;as
+2;tutu
+5;hep
+6;as
+3;as
+y;z;x
+1
+as;4;1

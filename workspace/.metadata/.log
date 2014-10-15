@@ -150,3 +150,47 @@ Binding(CTRL+D,
 
 !ENTRY com.google.gdt.eclipse.drive 1 0 2014-10-15 09:59:50.676
 !MESSAGE DriveLoginListener invoked to report login
+!SESSION 2014-10-15 10:34:06.134 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -data /auto_home/swouters/Documents/cours/m1/workspace -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-10-15 10:34:17.449
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.adobe.flexbuilder.project 4 43 2014-10-15 10:34:41.781
+!MESSAGE Linux not yet supported
+!STACK 0
+java.lang.RuntimeException: Linux not yet supported
+	at com.adobe.flexide.launching.internal.playertrust.PlayerTrustWarningTracker.doIsPlayerAlreadyLoaded(PlayerTrustWarningTracker.java:266)
+	at com.adobe.flexide.launching.internal.playertrust.PlayerTrustWarningTracker.isPlayerAlreadyLoaded(PlayerTrustWarningTracker.java:201)
+	at com.adobe.flexide.launching.internal.playertrust.PlayerTrustWarningTracker.playerTrustAdded(PlayerTrustWarningTracker.java:153)
+	at com.adobe.flexide.launching.internal.playertrust.PlayerTrustWarningDelegate.playerTrustAdded(PlayerTrustWarningDelegate.java:30)
+	at com.adobe.flexbuilder.project.internal.PlayerTrustStore.setTrustPath(PlayerTrustStore.java:156)
+	at com.adobe.flexbuilder.project.internal.PlayerTrustStore.setWorkspaceTrustPath(PlayerTrustStore.java:95)
+	at com.adobe.flexbuilder.project.internal.FlexProjectCore$4.run(FlexProjectCore.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.jface 2 0 2014-10-15 10:54:41.497
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-10-15 10:54:41.497
+!MESSAGE A conflict occurred for CTRL+D:
+Binding(CTRL+D,
+	ParameterizedCommand(Command(org.eclipse.debug.ui.commands.eof,EOF,
+		Send end of file,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@476257ca,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.debug.ui.console,,,system)
+Binding(CTRL+D,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.delete.line,Delete Line,
+		Delete a line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@53a6f271,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)

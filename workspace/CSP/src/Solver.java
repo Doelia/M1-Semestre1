@@ -59,27 +59,27 @@ public class Solver {
 	private boolean contrainteEstVerifiee(String var, Constraint c) {
 		
 		Object valueVar = this.assignation.get(var);
-		
-		int iVar = 0;
-		for (int i = 0; i < c.getArity(); i++) {
-			if (c.getVariables().get(i).equals(var)) {
-				iVar = i;
-			}
-		}
+		int iVar = c.getVariables().indexOf(var);
 		
 		for (ArrayList<Object> list : c.getValTuples()) { // Pour chaque tuple, [2, tutu]
 			if (valueVar.equals(list.get(iVar))) { // Si la variable traitée répond à la contrainte
 				
 				// On vérifie que toutes les autres variables de la contraintes sont respectées
+				boolean allAreOk = true;
 				for (int j = 0; j < list.size(); j++) {
 					String varTested = c.getVariables().get(j);
 					if (this.assignation.containsKey(varTested)) { // Seulement si elle est affectée
 						Object valueOfVar = this.assignation.get(varTested);
-						if (valueOfVar.equals(list.get(j))) {
-							return true;
+						if (!valueOfVar.equals(list.get(j))) {
+							allAreOk = false;
 						}
 					}
 				}
+				if (allAreOk) {
+					System.out.println("tuple "+list+" OK");
+					return true;
+				}
+				
 			}
 		}
 		
@@ -88,6 +88,7 @@ public class Solver {
 	
 	private boolean isConsistant(String varAffected) {
 		for (Constraint c : this.problem.getConstraintsContaining(varAffected)) { // pour toutes les contraintes concernées
+			System.out.println("Contrainte "+c);
 			if (!this.contrainteEstVerifiee(varAffected, c)) { // Si contrainte validée
 				return false;
 			}
@@ -137,7 +138,31 @@ public class Solver {
 
 	// retourne l'ensemble des solutions
 	public HashSet<HashMap<String, Object>> searchAllSolutions() {
-		// TO DO
+
+		if (this.assignation.size() == this.problem.getVarNumber()) {
+			HashSet<HashMap<String, Object>> nouv = new HashSet<HashMap<String, Object>>();
+			nouv.add(this.assignation.clone());
+			nouv.addAll( this.searchAllSolutions());
+		}
+		
+		// On choisit une variable non affectuée
+		String chosenVar = this.chooseVar(this.problem.getVars(), this.assignation.keySet());
+		System.out.println("On choisit la variable "+chosenVar);
+		
+		for (Object val : this.tri(this.problem.getDom(chosenVar))) {
+			this.assignation.put(chosenVar, val);
+			System.out.println("On asigne "+chosenVar+" = "+val+";");
+			if (this.isConsistant(chosenVar)) { // Si contrainte validée
+				 HashMap<String, Object> affect = backtrack();
+				 if (affect.size() == this.problem.getVarNumber())
+					 return affect;
+			} else {
+				System.out.println("Pas vérifié :(");
+				this.assignation.remove(chosenVar);
+			}
+		}
+		
 		return null;
 	}
+	
 }

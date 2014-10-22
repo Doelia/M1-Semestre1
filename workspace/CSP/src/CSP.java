@@ -31,7 +31,7 @@ public class CSP {
 		this();
 		
 		try {
-			BufferedReader bufRead = new BufferedReader(new FileReader("example.txt"));
+			BufferedReader bufRead = new BufferedReader(new FileReader(fileName));
 			int nVariables = Integer.parseInt(bufRead.readLine());
 			
 			for (int i=0; i < nVariables; i++) { // Pour chaque variable

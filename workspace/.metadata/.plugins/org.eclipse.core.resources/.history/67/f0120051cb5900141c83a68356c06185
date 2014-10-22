@@ -77,7 +77,7 @@ public class Solver {
 		String chosenVar = this.chooseVar(this.problem.getVars(), this.assignation.keySet());
 		System.out.println("On choisit la variable "+chosenVar);
 		
-		for (Object val : this.tri(this.problem.getDom(chosenVar))){
+		for (Object val : this.tri(this.problem.getDom(chosenVar))) {
 			this.assignation.put(chosenVar, val);
 			System.out.println("On asigne "+chosenVar+" = "+val+";");
 			if (this.isConsistant(chosenVar)) { // Si contrainte validée

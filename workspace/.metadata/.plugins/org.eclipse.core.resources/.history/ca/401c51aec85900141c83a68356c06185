@@ -20,11 +20,11 @@ public class TP {
 		}
 		System.out.println("\nRecherche d'une solution au probleme :\n" + myProblem);
 		Solver mySolver = new Solver(myProblem);
-		//*
+		/*
 		HashMap<String,Object> mySolution = mySolver.searchSolution();
 		if (mySolution == null) System.out.println("Pas de solution !");
 		else System.out.println("Une solution est " + mySolution);
 		//*/
-		//System.out.println("Ensemble de solutions : "+mySolver.searchAllSolutions());
+		System.out.println("Ensemble de solutions : "+mySolver.searchAllSolutions());
 	}
 }

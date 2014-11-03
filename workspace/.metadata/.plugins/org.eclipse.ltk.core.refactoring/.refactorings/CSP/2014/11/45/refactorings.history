@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 4 elements to &apos;CSP/src/main&apos;&#x0A;- Original project: &apos;CSP&apos;&#x0A;- Destination element: &apos;CSP/src/main&apos;&#x0A;- Original elements:&#x0A;     TP.java&#x0A;     Solver.java&#x0A;     CSP.java&#x0A;     Constraint.java&#x0A;- Update references to refactored element" description="Move compilation units" destination="/src&lt;main" element1="/src&lt;{TP.java" element2="/src&lt;{Solver.java" element3="/src&lt;{CSP.java" element4="/src&lt;{Constraint.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1415034834604" units="4" version="1.0"/>
+</session>

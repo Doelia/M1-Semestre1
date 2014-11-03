@@ -1,37 +1,33 @@
-#include "commun.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <fcntl.h>
+#include <sys/shm.h>// pour le SHM_RDONLY
 
-void main() {
+#include <sys/sem.h>//pour les sémaphores
+#define ZONES 5
 
-	key_t key;
-	struct sembuf op;
-
-	if ((key = ftok("./zones", 10)) == -1) {
-		perror("ftok");
-		exit(1);
+void main(){
+	key_t cle = ftok("./test2",10);
+	if (cle == -1){
+		perror("problème ftok");
+	}
+	//sémaphore création
+	int sem = semget(cle, ZONES, IPC_CREAT | 0666);
+	if (sem == -1){
+		perror("pb semget");
 	}
 
-	int semid = semget(key, NB_ZONE, IPC_CREAT | IPC_EXCL | 0666);
-	if (semid < 0) {
-		printf("La sémaphore existe déjà, on la récupère...\n");
-		semid = semget(key, NB_ZONE, 0666);
+	//récupération jeton
+	struct sembuf sempar;
+	//on initialise toutes les sem à 0
+	int i;
+	for (i=0; i<ZONES; i++){
+		int ctrl = semctl(sem, i, SETVAL, 1);
+		if (ctrl == -1){
+			perror("pb semctl");
+		}
 	}
-	printf("Initialisation de la sémaphore...\n");
-	semctl(semid, 0, SETVAL, 0);
-	semctl(semid, 1, SETVAL, 0);
-
-
-	// Ouverture pour les employés
-    op.sem_num = 0;
-    op.sem_op = NB_EMPLOYE; 
-    op.sem_flg = 0;
-    semop(semid, &op, 1);
-    printf("Employés prévenus !");
-
-    printf("Attente des employés...\n");
-    op.sem_num = 1;
-    op.sem_op = - NB_EMPLOYE; 
-    op.sem_flg = 0;
-    semop(semid, &op, 1);
-    printf("Tous les employés ont lu le message.\n");
-
 }

@@ -21,8 +21,8 @@ int Sock::sockaddLocRempli(const char * nomServ, const char *protoServ) {
 
 	/* recherche des parametres du service qu'on veut assurer*/
 	srv = getservbyname (nomServ, protoServ);
-	if (srv == NULL){
-		cout <<nomServ<< "non trouve dans services\n";
+	if (srv == NULL) {
+		cout << nomServ << "non trouve dans services\n";
 		exit (0);
 	}
 
@@ -49,8 +49,8 @@ int Sock::sockaddLocRempli(short numPort) {
 int Sock::bind(int desc, const char * nomServ, const char *protoServ) {
 	int lg = sockaddLocRempli(nomServ, protoServ);
 	if ((sRetour = ::bind(desc, (struct sockaddr *) &adrSock, lg)) < 0)
-		perror ("pb bind");r
-	eturn sRetour;
+		perror ("pb bind");
+	return sRetour;
 }
 
 /////////////////////////////////////////////////////////////////

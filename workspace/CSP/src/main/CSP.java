@@ -47,16 +47,23 @@ public class CSP {
 			int nContraintes = Integer.parseInt(bufRead.readLine());
 			for (int i=0; i < nContraintes; i++) { // Pour chaque contrainte
 				
-				// Récupuération liste des variables (x;y)
-				ConstraintExt c = new ConstraintExt(new ArrayList<String>(Arrays.asList(bufRead.readLine().split(";"))));
+				// Type de contrainte
+				String type = bufRead.readLine();
 				
-				//System.out.println("line = "+bufRead.readLine());
-				int nbrTuples = Integer.parseInt(bufRead.readLine());
-				for (int nTuple=0; nTuple < nbrTuples; nTuple++) {
-					c.addTuple(new ArrayList<Object>(Arrays.asList(bufRead.readLine().split(";"))));
+				if (type.equals("EXT")) {
+					// Récupuération liste des variables (x;y)
+					ConstraintExt c = new ConstraintExt(new ArrayList<String>(Arrays.asList(bufRead.readLine().split(";"))));
+					
+					//System.out.println("line = "+bufRead.readLine());
+					int nbrTuples = Integer.parseInt(bufRead.readLine());
+					for (int nTuple=0; nTuple < nbrTuples; nTuple++) {
+						c.addTuple(new ArrayList<Object>(Arrays.asList(bufRead.readLine().split(";"))));
+					}
+					
+					this.addConstraint(c);
 				}
 				
-				this.addConstraint(c);
+				
 			}
 			
 			bufRead.close();

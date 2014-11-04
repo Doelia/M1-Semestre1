@@ -1,0 +1,37 @@
+package main;
+
+import java.util.ArrayList;
+
+public class ConstraintDif extends ConstraintAbstract {
+
+	public ConstraintDif(ArrayList<String> var) {
+		super(var);
+	}
+	
+	public ConstraintDif(ArrayList<String> var, String name) {
+		super(var, name);
+	}
+
+	@Override
+	public boolean constraintIsRespectee(ArrayList<Object> tuples) {
+		if (tuples.isEmpty()) {
+			return true;
+		}
+		Object precedent = tuples.get(0);
+		for (Object o : tuples) {
+			if (o.equals(precedent)) {
+				return false;
+			}
+			precedent = o;
+		}
+		
+		return true;
+		
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString()+" : DIF";
+	}
+
+}

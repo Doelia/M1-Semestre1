@@ -1,0 +1,48 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+public class ConstraintAbstract {
+
+	private static int num=0; //pour donner un numéro unique à chaque contrainte
+	private String name; // nom de la contrainte
+	private ArrayList<String> varTuple; // ensemble ordonné de variables
+	
+	
+	public ConstraintAbstract(ArrayList<String> var) {
+		num++;
+		this.name = "C"+num;
+		varTuple = var; 
+	}
+	
+	public ConstraintAbstract(ArrayList<String> var, String name) {
+		num++;
+		this.name = name;
+		varTuple = var; 
+	}
+	
+	public int getArity() {
+		return varTuple.size();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public ArrayList<String> getVariables() {
+		return varTuple;
+	}
+	
+	
+	public String toString() {
+		return "\n\t"+ name + " = " + varTuple + " : " + valTuples; 
+	}
+	
+	public Set<ArrayList<Object>> getValTuples() {
+		return valTuples;
+	}
+
+	
+}

@@ -18,12 +18,12 @@ import java.util.TreeSet;
 public class CSP {
 	
 	private HashMap<String,TreeSet<Object>> varDom; // table de hachage associant � chaque variable son domaine
-	private ArrayList<Constraint> constraints; // liste des contraintes
+	private ArrayList<ConstraintAbstract> constraints; // liste des contraintes
 	
 	// initialise un CSP avec des structures vides
 	public CSP() {
 		varDom = new HashMap<String,TreeSet<Object>>();
-		constraints = new ArrayList<Constraint>();
+		constraints = new ArrayList<ConstraintAbstract>();
 	}
 
 	// initialise un CSP � partir d'un fichier texte
@@ -32,7 +32,7 @@ public class CSP {
 		this();
 		
 		try {
-			BufferedReader bufRead = new BufferedReader(new FileReader("example.txt"));
+			BufferedReader bufRead = new BufferedReader(new FileReader(fileName));
 			int nVariables = Integer.parseInt(bufRead.readLine());
 			
 			for (int i=0; i < nVariables; i++) { // Pour chaque variable
@@ -48,12 +48,11 @@ public class CSP {
 			for (int i=0; i < nContraintes; i++) { // Pour chaque contrainte
 				
 				// Récupuération liste des variables (x;y)
-				Constraint c = new Constraint(new ArrayList<String>(Arrays.asList(bufRead.readLine().split(";"))));
+				ConstraintExt c = new ConstraintExt(new ArrayList<String>(Arrays.asList(bufRead.readLine().split(";"))));
 				
 				//System.out.println("line = "+bufRead.readLine());
 				int nbrTuples = Integer.parseInt(bufRead.readLine());
 				for (int nTuple=0; nTuple < nbrTuples; nTuple++) {
-					System.out.println("tuple num "+nTuple);
 					c.addTuple(new ArrayList<Object>(Arrays.asList(bufRead.readLine().split(";"))));
 				}
 				
@@ -84,10 +83,12 @@ public class CSP {
 	}
 	
 	// ajoute une contrainte
-	public void addConstraint(Constraint c) {		
+	public void addConstraint(ConstraintExt c) {		
 		// on ne verifie pas que les valeurs des contraintes sont "compatibles" avec les domaines
-		if(!varDom.keySet().containsAll(c.getVariables())) System.err.println("La contrainte "+ c.getName() + " contient des variables ("+ c.getVariables() +") non declarees dans le CSP dont les variables sont " + varDom.keySet());
-		else constraints.add(c);
+		if (!varDom.keySet().containsAll(c.getVariables()))
+			System.err.println("La contrainte "+ c.getName() + " contient des variables ("+ c.getVariables() +") non declarees dans le CSP dont les variables sont " + varDom.keySet());
+		else
+			constraints.add(c);
 	}
 	
 	public int getVarNumber() {
@@ -114,15 +115,16 @@ public class CSP {
 		return varDom;
 	}
 
-	public ArrayList<Constraint> getConstraints() {
+	public ArrayList<ConstraintAbstract> getConstraints() {
 		return constraints;
 	}
 	
-	// retourne l'ensemble des contraintes contenant la variable pass�e en param�tre
-	public ArrayList<Constraint> getConstraintsContaining(String var) {
-		ArrayList<Constraint> selected = new ArrayList<Constraint>();
-		for(Constraint c : constraints) {
-			if(c.getVariables().contains(var)) selected.add(c);
+	// retourne l'ensemble des contraintes contenant la variable passée en parametre
+	public ArrayList<ConstraintAbstract> getConstraintsContaining(String var) {
+		ArrayList<ConstraintAbstract> selected = new ArrayList<ConstraintAbstract>();
+		for (ConstraintAbstract c : constraints) {
+			if (c.getVariables().contains(var))
+				selected.add(c);
 		}
 		return selected;
 	}
@@ -130,7 +132,6 @@ public class CSP {
 	public String toString() {
 		return "Var et Dom : " + varDom + "\nConstraints :" + constraints;
 	}
-	
 	
 }
 

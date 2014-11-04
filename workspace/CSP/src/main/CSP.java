@@ -61,6 +61,8 @@ public class CSP {
 					}
 					
 					this.addConstraint(c);
+				} else if (type.equals("EQ")) {
+					
 				}
 				
 				

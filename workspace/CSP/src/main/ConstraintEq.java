@@ -19,7 +19,7 @@ public class ConstraintEq extends ConstraintAbstract {
 		}
 		Object precedent = tuples.get(0);
 		for (Object o : tuples) {
-			if (!o.equals(precedent)) {
+			if (o != null && precedent != null && !o.equals(precedent)) {
 				return false;
 			}
 			precedent = o;

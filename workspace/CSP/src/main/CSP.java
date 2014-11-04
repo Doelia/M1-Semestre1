@@ -62,7 +62,11 @@ public class CSP {
 					
 					this.addConstraint(c);
 				} else if (type.equals("EQ")) {
-					
+					ConstraintEq c = new ConstraintEq(new ArrayList<String>(Arrays.asList(bufRead.readLine().split(";"))));
+					this.addConstraint(c);;
+				} else if (type.equals("DIF")) {
+					ConstraintDif c = new ConstraintDif(new ArrayList<String>(Arrays.asList(bufRead.readLine().split(";"))));
+					this.addConstraint(c);
 				}
 				
 				
@@ -77,8 +81,10 @@ public class CSP {
 	
 	// ajoute une variable
 	public void addVariable(String var) {
-		if(varDom.get(var)==null) varDom.put(var, new TreeSet<Object>());
-		else System.err.println("Variable " + var + " deja existante");
+		if (varDom.get(var) == null)
+			varDom.put(var, new TreeSet<Object>());
+		else
+			System.err.println("Variable " + var + " deja existante");
 	}
 
 	// ajoute une valeur au domaine d'une variable
@@ -92,7 +98,7 @@ public class CSP {
 	}
 	
 	// ajoute une contrainte
-	public void addConstraint(ConstraintExt c) {		
+	public void addConstraint(ConstraintAbstract c) {		
 		// on ne verifie pas que les valeurs des contraintes sont "compatibles" avec les domaines
 		if (!varDom.keySet().containsAll(c.getVariables()))
 			System.err.println("La contrainte "+ c.getName() + " contient des variables ("+ c.getVariables() +") non declarees dans le CSP dont les variables sont " + varDom.keySet());

@@ -18,6 +18,7 @@ public class ConstraintDif extends ConstraintAbstract {
 			return true;
 		}
 		for (Object o : tuples) {
+			if (o != null)
 			for (Object other : tuples) {
 				if (other != o && o.equals(other)) {
 					return false;

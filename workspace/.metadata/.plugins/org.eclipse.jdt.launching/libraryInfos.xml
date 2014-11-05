@@ -21,6 +21,7 @@
 <entry path="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
 </endorsedDirs>
 </libraryInfo>
+<<<<<<< HEAD
 <libraryInfo home="/usr/lib/jvm/java-7-oracle" version="1.7.0_60">
 <bootpath>
 <entry path="/usr/lib/jvm/java-7-oracle/jre/lib/resources.jar"/>
@@ -38,6 +39,26 @@
 </extensionDirs>
 <endorsedDirs>
 <entry path="/usr/lib/jvm/java-7-oracle/jre/lib/endorsed"/>
+=======
+<libraryInfo home="/usr/lib/jvm/java-7-openjdk-amd64" version="1.7.0_65">
+<bootpath>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/resources.jar"/>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar"/>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/sunrsasign.jar"/>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jsse.jar"/>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jce.jar"/>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/charsets.jar"/>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rhino.jar"/>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jfr.jar"/>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext"/>
+<entry path="/usr/java/packages/lib/ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/endorsed"/>
+>>>>>>> 7b705d8cde4339c54b1ef64f2fc7bded751b12a5
 </endorsedDirs>
 </libraryInfo>
 </libraryInfos>

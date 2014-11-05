@@ -4,6 +4,7 @@ rl2;c1;c2;c3;c4
 rl3;c1;c2;c3;c4
 rl4;c1;c2;c3;c4
 6
+EXT
 rl1;rl2
 6
 c1;c3
@@ -12,6 +13,7 @@ c2;c4
 c3;c1
 c4;c2
 c4;c1
+EXT
 rl1;rl3
 8
 c1;c2
@@ -22,6 +24,7 @@ c3;c2
 c3;c4
 c4;c1
 c4;c3
+EXT
 rl1;rl4
 10
 c1;c2
@@ -34,6 +37,7 @@ c3;c2
 c3;c4
 c4;c2
 c4;c3
+EXT
 rl2;rl3
 6
 c1;c3
@@ -42,6 +46,7 @@ c2;c4
 c3;c1
 c4;c1
 c4;c2
+EXT
 rl2;rl4
 8
 c1;c2
@@ -52,6 +57,7 @@ c3;c2
 c3;c4
 c4;c1
 c4;c3
+EXT
 rl3;rl4
 6
 c1;c3

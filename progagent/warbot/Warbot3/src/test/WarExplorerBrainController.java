@@ -18,3 +18,4 @@ public class WarExplorerBrainController extends WarExplorerAbstractBrainControll
 		return WarExplorer.ACTION_MOVE;
 	}
 }
+

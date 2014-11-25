@@ -135,6 +135,14 @@ public class Atome
 	return s;
 	}
 	
+	public boolean containTerme(String var) {
+		for (Terme t : this.getListeTermes()) {
+			if (t.getLabel().equals(var))
+				return true;
+		}
+		return false;
+	}
+	
 	// juste pour une d�mo de la classe
 	public static void main(String[] args)
 	{

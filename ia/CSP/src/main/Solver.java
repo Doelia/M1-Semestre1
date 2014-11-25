@@ -54,7 +54,6 @@ public class Solver {
 		return true;
 	}
 
-	@SuppressWarnings("unused")
 	private HashMap<String, Object> backtrack() {
 
 		if (this.assignation.size() == this.problem.getVarNumber()) {

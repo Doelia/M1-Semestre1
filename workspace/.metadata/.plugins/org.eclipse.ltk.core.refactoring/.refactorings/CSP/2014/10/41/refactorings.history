@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename method &apos;CSP.getVar()&apos; to &apos;getVars&apos;&#x0A;- Original project: &apos;CSP&apos;&#x0A;- Original element: &apos;CSP.getVar()&apos;&#x0A;- Renamed element: &apos;CSP.getVars()&apos;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;getVar&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;{CSP.java[CSP~getVar" name="getVars" references="true" stamp="1412756148845" version="1.0"/>
-</session>

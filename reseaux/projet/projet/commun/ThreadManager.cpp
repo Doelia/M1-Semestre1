@@ -27,7 +27,8 @@ void ThreadManager::joinAll() {
 	int n = 0;
 
 	while (n != this->thread.size()) {
-		
+		pthread_join(this->threads->at(i), NULL);
+		n++;
 	}
 
 	for (vector<int>::iterator it=this->threads->begin(); it != this->threads->end(); it++) {

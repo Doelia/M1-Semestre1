@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D762BE4A1A24FD7B004123B8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D762BE491A24FD7B004123B8 /* main.cpp */; };
+		D762BE5F1A24FDA9004123B8 /* ThreadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D762BE551A24FDA9004123B8 /* ThreadManager.cpp */; };
+		D762BE611A24FDA9004123B8 /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D762BE5B1A24FDA9004123B8 /* Interface.cpp */; };
+		D762BE6E1A24FDD3004123B8 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D762BE501A24FDA9004123B8 /* client.cpp */; };
+		D762BE6F1A250162004123B8 /* ClientConnexion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D762BE581A24FDA9004123B8 /* ClientConnexion.cpp */; };
+		D762BE701A250168004123B8 /* ThreadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D762BE551A24FDA9004123B8 /* ThreadManager.cpp */; };
+		D762BE721A2501A7004123B8 /* serveur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D762BE5D1A24FDA9004123B8 /* serveur.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,15 +25,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		D762BE651A24FDBD004123B8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D762BE461A24FD7B004123B8 /* projet_xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = projet_xcode; sourceTree = BUILT_PRODUCTS_DIR; };
-		D762BE491A24FD7B004123B8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D762BE501A24FDA9004123B8 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = client.cpp; path = ../projet_xcode/client.cpp; sourceTree = "<group>"; };
+		D762BE521A24FDA9004123B8 /* constantes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constantes.h; sourceTree = "<group>"; };
+		D762BE531A24FDA9004123B8 /* header-commun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "header-commun.h"; sourceTree = "<group>"; };
+		D762BE541A24FDA9004123B8 /* includes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = includes.h; sourceTree = "<group>"; };
+		D762BE551A24FDA9004123B8 /* ThreadManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadManager.cpp; sourceTree = "<group>"; };
+		D762BE561A24FDA9004123B8 /* ThreadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadManager.h; sourceTree = "<group>"; };
+		D762BE581A24FDA9004123B8 /* ClientConnexion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientConnexion.cpp; sourceTree = "<group>"; };
+		D762BE591A24FDA9004123B8 /* ClientConnexion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientConnexion.h; sourceTree = "<group>"; };
+		D762BE5A1A24FDA9004123B8 /* includes-serveur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "includes-serveur.h"; sourceTree = "<group>"; };
+		D762BE5B1A24FDA9004123B8 /* Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interface.cpp; sourceTree = "<group>"; };
+		D762BE5C1A24FDA9004123B8 /* Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
+		D762BE5D1A24FDA9004123B8 /* serveur.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = serveur.cpp; sourceTree = "<group>"; };
+		D762BE671A24FDBD004123B8 /* client */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = client; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D762BE431A24FD7B004123B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D762BE641A24FDBD004123B8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				D762BE481A24FD7B004123B8 /* projet_xcode */,
+				D762BE681A24FDBD004123B8 /* client */,
 				D762BE471A24FD7B004123B8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				D762BE461A24FD7B004123B8 /* projet_xcode */,
+				D762BE671A24FDBD004123B8 /* client */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,9 +92,43 @@
 		D762BE481A24FD7B004123B8 /* projet_xcode */ = {
 			isa = PBXGroup;
 			children = (
-				D762BE491A24FD7B004123B8 /* main.cpp */,
+				D762BE511A24FDA9004123B8 /* commun */,
+				D762BE571A24FDA9004123B8 /* serveur */,
+				D762BE5D1A24FDA9004123B8 /* serveur.cpp */,
 			);
 			path = projet_xcode;
+			sourceTree = "<group>";
+		};
+		D762BE511A24FDA9004123B8 /* commun */ = {
+			isa = PBXGroup;
+			children = (
+				D762BE521A24FDA9004123B8 /* constantes.h */,
+				D762BE531A24FDA9004123B8 /* header-commun.h */,
+				D762BE541A24FDA9004123B8 /* includes.h */,
+				D762BE551A24FDA9004123B8 /* ThreadManager.cpp */,
+				D762BE561A24FDA9004123B8 /* ThreadManager.h */,
+			);
+			path = commun;
+			sourceTree = "<group>";
+		};
+		D762BE571A24FDA9004123B8 /* serveur */ = {
+			isa = PBXGroup;
+			children = (
+				D762BE581A24FDA9004123B8 /* ClientConnexion.cpp */,
+				D762BE591A24FDA9004123B8 /* ClientConnexion.h */,
+				D762BE5A1A24FDA9004123B8 /* includes-serveur.h */,
+				D762BE5B1A24FDA9004123B8 /* Interface.cpp */,
+				D762BE5C1A24FDA9004123B8 /* Interface.h */,
+			);
+			path = serveur;
+			sourceTree = "<group>";
+		};
+		D762BE681A24FDBD004123B8 /* client */ = {
+			isa = PBXGroup;
+			children = (
+				D762BE501A24FDA9004123B8 /* client.cpp */,
+			);
+			path = client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,6 +151,23 @@
 			productReference = D762BE461A24FD7B004123B8 /* projet_xcode */;
 			productType = "com.apple.product-type.tool";
 		};
+		D762BE661A24FDBD004123B8 /* client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D762BE6B1A24FDBD004123B8 /* Build configuration list for PBXNativeTarget "client" */;
+			buildPhases = (
+				D762BE631A24FDBD004123B8 /* Sources */,
+				D762BE641A24FDBD004123B8 /* Frameworks */,
+				D762BE651A24FDBD004123B8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = client;
+			productName = client;
+			productReference = D762BE671A24FDBD004123B8 /* client */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -92,6 +178,9 @@
 				ORGANIZATIONNAME = "Stéphane";
 				TargetAttributes = {
 					D762BE451A24FD7B004123B8 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					D762BE661A24FDBD004123B8 = {
 						CreatedOnToolsVersion = 6.1;
 					};
 				};
@@ -109,6 +198,7 @@
 			projectRoot = "";
 			targets = (
 				D762BE451A24FD7B004123B8 /* projet_xcode */,
+				D762BE661A24FDBD004123B8 /* client */,
 			);
 		};
 /* End PBXProject section */
@@ -118,7 +208,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D762BE4A1A24FD7B004123B8 /* main.cpp in Sources */,
+				D762BE721A2501A7004123B8 /* serveur.cpp in Sources */,
+				D762BE6F1A250162004123B8 /* ClientConnexion.cpp in Sources */,
+				D762BE5F1A24FDA9004123B8 /* ThreadManager.cpp in Sources */,
+				D762BE611A24FDA9004123B8 /* Interface.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D762BE631A24FDBD004123B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D762BE6E1A24FDD3004123B8 /* client.cpp in Sources */,
+				D762BE701A250168004123B8 /* ThreadManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +315,24 @@
 			};
 			name = Release;
 		};
+		D762BE6C1A24FDBD004123B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D762BE6D1A24FDBD004123B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -230,6 +350,14 @@
 			buildConfigurations = (
 				D762BE4E1A24FD7B004123B8 /* Debug */,
 				D762BE4F1A24FD7B004123B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D762BE6B1A24FDBD004123B8 /* Build configuration list for PBXNativeTarget "client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D762BE6C1A24FDBD004123B8 /* Debug */,
+				D762BE6D1A24FDBD004123B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

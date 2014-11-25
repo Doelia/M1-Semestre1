@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D762BE451A24FD7B004123B8"
-               BuildableName = "projet_xcode"
-               BlueprintName = "projet_xcode"
+               BlueprintIdentifier = "D762BE661A24FDBD004123B8"
+               BuildableName = "client"
+               BlueprintName = "client"
                ReferencedContainer = "container:projet_xcode.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D762BE451A24FD7B004123B8"
-            BuildableName = "projet_xcode"
-            BlueprintName = "projet_xcode"
+            BlueprintIdentifier = "D762BE661A24FDBD004123B8"
+            BuildableName = "client"
+            BlueprintName = "client"
             ReferencedContainer = "container:projet_xcode.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D762BE451A24FD7B004123B8"
-            BuildableName = "projet_xcode"
-            BlueprintName = "projet_xcode"
+            BlueprintIdentifier = "D762BE661A24FDBD004123B8"
+            BuildableName = "client"
+            BlueprintName = "client"
             ReferencedContainer = "container:projet_xcode.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -69,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D762BE451A24FD7B004123B8"
-            BuildableName = "projet_xcode"
-            BlueprintName = "projet_xcode"
+            BlueprintIdentifier = "D762BE661A24FDBD004123B8"
+            BuildableName = "client"
+            BlueprintName = "client"
             ReferencedContainer = "container:projet_xcode.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

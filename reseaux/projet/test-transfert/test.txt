@@ -1,0 +1,5 @@
+Petit test de fichier
+Avec accents, ponctuations,
+
+et sauts de ligne.
+

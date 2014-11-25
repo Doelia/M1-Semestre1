@@ -1,0 +1,3 @@
+#define PORT_SERVER 12345
+#define MAX_SIZE_PAQUETS 32
+

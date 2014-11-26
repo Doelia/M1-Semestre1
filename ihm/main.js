@@ -1,11 +1,8 @@
 	// Bibliotéques
 var express = require('express');
-var cookieParser = require('cookie-parser')
 var fs = require('fs');
 var connect = require('connect');
-var mysql = require('mysql');
 var app = express();
-app.use(cookieParser());
 
 var server = app.listen(8080);
 
@@ -23,7 +20,7 @@ app.get('/:file.js', function (req, res) {
 	res.write(fs.readFileSync('public/js/'+req.params.file+'.js', 'utf8'));
 	res.end();
 });
-
+	
 // Le client demange le template (défaut à l'ouverture de la page)
 app.get('/', function (req, res) {
 	res.render('template.ejs');

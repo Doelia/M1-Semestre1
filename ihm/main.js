@@ -43,7 +43,7 @@ var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
 
-	console.log("Un client essai de se connecter");
+	console.log("Un client se connecte");
 
 	socket.emit('connexion_ok', 1);
 
@@ -51,7 +51,9 @@ io.sockets.on('connection', function (socket) {
      	console.log('déconnecté');
     });
 
-    
+    socket.on('drawLine', function(a, b) {
+    	socket.broadcast.emit('drawLine', a, b);
+    });
 	
 
 

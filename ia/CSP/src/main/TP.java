@@ -11,7 +11,7 @@ public class TP {
 
 	public static void main(String args[]) {
 		String fileName = "hom.txt";
-		
+		/*
 		try {    
 			System.out.println("Chargement du fichier : "+new java.io.File( "." ).getCanonicalPath()+"/"+fileName);
 			CSP myProblem = new CSP(fileName);
@@ -30,11 +30,11 @@ public class TP {
 			System.err.println(e);
 			return;
 		}
+		*/
 		
-		
+		// HOMO
 		Homomorphismes h = new Homomorphismes("p(x,y);p(y,z);p(x,u);p(z,z);r(x);r(u)", "p(a,b);p(a,c);p(b,c);p(b,d);p(b,e);p(d,e);p(e,e);r(a);r(b);r(c)");
-		Solver mySolverMultiple = new Solver(h.toCSP());
-		System.out.println("Ensemble de solutions : "+mySolverMultiple.searchAllSolutions());
+		System.out.println("Ensemble de solutions : "+h.getHomomorphismes());
 		
 	}
 }

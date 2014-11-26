@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,7 +9,6 @@ public class Homomorphismes {
 
 	private ArrayList<Atome> A1;
 	private ArrayList<Atome> A2;
-	private ArrayList<Homomorphismes> homos;
 	
 	private static ArrayList<Atome> strToArrayList(String s) {
 		ArrayList<Atome> list = new ArrayList<Atome>();
@@ -39,7 +39,7 @@ public class Homomorphismes {
 		return list;
 	}
 	
-	public ArrayList<Atome> getAtomesForLabel(String label, ArrayList<Atome> atomes) {
+	private ArrayList<Atome> getAtomesForLabel(String label, ArrayList<Atome> atomes) {
 		ArrayList<Atome> list = new ArrayList<Atome>();
 		for (Atome a : atomes) {
 			if (label.equals(a.getLabel())) { // var apparait dans cet atome
@@ -49,7 +49,7 @@ public class Homomorphismes {
 		return list;
 	}
 	
-	public CSP toCSP() {
+	private CSP toCSP() {
 		CSP csp = new CSP();
 		
 		// Recherche des variables
@@ -71,7 +71,7 @@ public class Homomorphismes {
 			}
 		}
 		
-		// Calcul des ensembles de définition
+		// Calcul des ensembles de dÔøΩfinition
 		for (String var : csp.getVars()) {
 			Set<String> labelsDeA1 = getLabelsOfVar(var, A1);
 			for (String valeur : valeurs) {
@@ -89,7 +89,7 @@ public class Homomorphismes {
 		// Calcul des contraintes
 		for (Atome atome : A1) { // p(x,y)
 			
-			// On récupère x,y
+			// On rÔøΩcupÔøΩre x,y
 			ArrayList<String> vars = new ArrayList<String>();
 			for (Terme t : atome.getListeTermes()) {
 				vars.add(t.getLabel());
@@ -110,6 +110,12 @@ public class Homomorphismes {
 		}
 		
 		return csp;
+	}
+	
+	public HashSet<HashMap<String, Object>> getHomomorphismes() {
+		Solver s = new Solver(this.toCSP());
+		System.out.println(this.toCSP());
+		return s.searchAllSolutions();
 	}
 	
 	

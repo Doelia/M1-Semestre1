@@ -6,7 +6,6 @@ var app = express();
 
 var server = app.listen(8080);
 
-// Fichier CSS
 app.get('/css/:file.css', function (req, res) {
 	res.writeHead(200, {'Content-Type': 'text/css'});
 	var path = 'public/css/'+req.params.file+'.css';
@@ -14,35 +13,30 @@ app.get('/css/:file.css', function (req, res) {
 	res.end();
 });
 
-// Fichier JS
 app.get('/:file.js', function (req, res) {
 	res.writeHead(200, {'Content-Type': 'text/javascript'});
 	res.write(fs.readFileSync('public/js/'+req.params.file+'.js', 'utf8'));
 	res.end();
 });
 	
-// Le client demange le template (défaut à l'ouverture de la page)
 app.get('/', function (req, res) {
-	res.render('template.ejs');
+	res.writeHead(200, {'Content-Type': 'text/html'});
+	res.write(fs.readFileSync('views/template.html', 'utf8'));
+	res.end();
 });
 
 var io = require('socket.io').listen(server);
 
+var lastLines = new Array();
+
 io.sockets.on('connection', function (socket) {
 
-	console.log("Un client se connecte");
+	socket.emit('drawLines', lastLines);
 
-	socket.emit('connexion_ok', 1);
-
-	socket.on('disconnect', function () {
-     	console.log('déconnecté');
+    socket.on('drawLines', function(datas) {
+    	for (var i in datas)
+    		lastLines.push(datas[i]);
+    	socket.broadcast.emit('drawLines', datas);
     });
-
-    socket.on('drawLine', function(a, b) {
-    	socket.broadcast.emit('drawLine', a, b);
-    });
-	
-
-
 });
 

@@ -1,28 +1,28 @@
-var socket = null;
+var socketObj = null;
+var canvasObj = null;
 
-function stopAll(msg) {
-	if (!msg)
-		msg = 'Force disconnect';
-	socket.close();
-	socket = null;
-	$('body').html(msg);
-}
 
-function CanvasObject() {
-	this.color = "red";
+function CanvasClass() {
+
+	// Objet canvas
 	this.canvas = $("#canvas");
 	this.context = this.canvas[0].getContext('2d');
-	this.width_brush = 3;
+
+	// Options modifiables
+	this.color = "green";
+	this.sizeBrush = 3;
+	
+	// Variables d'êtats
 	this.draw = false;
 	this.last = null;
 	var that = this;
 
-	this.drawLine = function(a, b) {
+	this.drawLine = function(data) {
 		this.context.beginPath();
-		this.context.moveTo(a.x, a.y);
-		this.context.lineTo(b.x, b.y);
-		this.context.strokeStyle = this.color;
-		this.context.lineWidth = this.width_brush;
+		this.context.moveTo(data.a.x, data.a.y);
+		this.context.lineTo(data.b.x, data.b.y);
+		this.context.strokeStyle = data.color;
+		this.context.lineWidth = data.sizeBrush;
 		this.context.stroke();
 	}
 
@@ -45,37 +45,61 @@ function CanvasObject() {
 	this.canvas.mousemove(function(e) {
 		if (that.draw) {
 			var pos = that.getPositionCursor(e);
-			socket.emit('drawLine', that.last, pos);
-			that.drawLine(that.last, pos);
+			var data = {
+				a: that.last,
+				b: pos,
+				color: that.color,
+				sizeBrush: that.sizeBrush
+			};
+			socketObj.recordLine(data);
+			that.drawLine(data);
 			that.last = pos;
 		}
 	});
 }
 
-var canvasObj;
-
-function start_loading(login) {
+function NetworkClass() {
 	
-	socket = io.connect('http://192.168.1.66:8080');
+	this.socket = io.connect('http://localhost:8080');
+	this.buffer = new Array();
+	var that = this;
 
-	socket.on('drawLine', function(a, b) {
-		console.log(a);
-		canvasObj.drawLine(a,b);
+	this.stopAll = function() {
+		this.socket.close();
+		this.socket = null;
+		$('body').html('Force disconnect');
+	}
+
+	this.recordLine = function(data) {
+		this.buffer.push(data);
+	}
+
+	setInterval(function() {
+		if (that.buffer.length > 0) {
+			that.socket.emit('drawLines', that.buffer);
+			that.buffer = new Array();
+		}
+	}, 300);
+
+	this.socket.on('drawLines', function(datas) {
+		for (var i in datas) {
+			canvasObj.drawLine(datas[i]);
+		}
 	});
 
-
-	socket.on('close', function() {
-		stopAll();
+	this.socket.on('close', function() {
+		that.stopAll();
 	});
-	socket.on('disconnect', function() {
-		stopAll();
+
+	this.socket.on('disconnect', function() {
+		that.stopAll();
 	});
 
 }
 
 $(document).ready(function() {
-	start_loading('doelia');
-	canvasObj = new CanvasObject();
+	canvasObj = new CanvasClass();
+	socketObj = new NetworkClass();
 });
 
 

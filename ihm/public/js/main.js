@@ -27,7 +27,7 @@ function CanvasObject() {
 	}
 
 	this.getPositionCursor = function(e) {
-		 var parentOffset = that.canvas.parent().offset(); 
+		var parentOffset = that.canvas.parent().offset(); 
    		var relX = e.pageX - parentOffset.left;
    		var relY = e.pageY - parentOffset.top;
    		return {x: relX, y: relY};
@@ -56,7 +56,7 @@ var canvasObj;
 
 function start_loading(login) {
 	
-	socket = io.connect('http://localhost:8080');
+	socket = io.connect('http://192.168.1.66:8080');
 
 	socket.on('drawLine', function(a, b) {
 		console.log(a);
@@ -74,11 +74,8 @@ function start_loading(login) {
 }
 
 $(document).ready(function() {
-
-start_loading('doelia');
-canvasObj = new CanvasObject();
-	
-
+	start_loading('doelia');
+	canvasObj = new CanvasObject();
 });
 
 

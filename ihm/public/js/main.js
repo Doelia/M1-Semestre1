@@ -100,6 +100,12 @@ function NetworkClass() {
 $(document).ready(function() {
 	canvasObj = new CanvasClass();
 	socketObj = new NetworkClass();
+
+	 $('#colorpicker').farbtastic();
+	 var picker = $.farbtastic('#colorpicker');
+	  picker.linkTo(function onColorChange(color) {
+        canvasObj.color = color;
+     });
 });
 
 

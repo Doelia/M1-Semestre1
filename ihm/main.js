@@ -13,6 +13,17 @@ app.get('/css/:file.css', function (req, res) {
 	res.end();
 });
 
+app.get('/img/:file.png', function (req, res) {
+	res.writeHead(200, {'Content-Type': 'image/png'});
+	var file = 'public/img/'+req.params.file+'.png';
+	fs.stat(file, function (err, stat) {
+		var img = fs.readFileSync(file);
+		res.contentType = 'image/png';
+		res.contentLength = stat.size;
+		res.end(img, 'binary');
+	});
+});
+
 app.get('/:file.js', function (req, res) {
 	res.writeHead(200, {'Content-Type': 'text/javascript'});
 	res.write(fs.readFileSync('public/js/'+req.params.file+'.js', 'utf8'));

@@ -1,4 +1,3 @@
-
 #include "FileManager.h"
 
 FileManager* FileManager::instance = NULL;
@@ -13,7 +12,22 @@ FileManager* FileManager::init() {
 }
 
 bool FileManager::exists(string nameFile) {
-	return false;
+	FILE *file;
+    if (file = fopen(nameFile.c_str(), "r")) {
+        fclose(file);
+        return 1;
+    }
+    return 0;
 }
 
+int FileManager::getSize(string nameFile) {
+	FILE *file;
+    if (file = fopen(nameFile.c_str(), "r")) {
+    	fseek(file, 0L, SEEK_END);
+    	int size = ftell(file);
+        fclose(file);
+        return size;
+    }
+    return -1;
+}
 

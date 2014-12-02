@@ -10,6 +10,7 @@ public:
 	static FileManager* init();
 
 	bool exists(string);
+	int getSize(string);
 private:
 	static FileManager* instance;
 

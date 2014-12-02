@@ -1,4 +1,3 @@
-
 #include "ServerManager.h"
 
 ServerManager* ServerManager::instance = NULL;
@@ -32,7 +31,7 @@ int ServerManager::startServer() {
 	if (sock != -1) {
 
 		struct sockaddr_in addr;
-		addr.sin_addr.s_addr    = htonl(INADDR_ANY);
+		addr.sin_addr.s_addr	= htonl(INADDR_ANY);
 		addr.sin_family			= AF_INET;
 	 	addr.sin_port			= htons(PORT_SERVER);
 	 	

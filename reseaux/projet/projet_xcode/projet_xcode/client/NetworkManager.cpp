@@ -1,4 +1,3 @@
-
 #include "NetworkManager.h"
 
 NetworkManager* NetworkManager::instance = NULL;
@@ -68,6 +67,7 @@ void NetworkManager::onPaquet(string paquet) {
 		cout << "Erreur, paquet vide" << endl;
 		return;
 	}
+
 	if (parts.at(0).compare("MSG") == 0) {
 		this->onPaquet_message(parts.at(1));
 		return;
@@ -84,7 +84,14 @@ void NetworkManager::onPaquet(string paquet) {
 		return;
 	}
 
-	cout << "Erreur réseau : Paquet non reconnu" << endl;
+	if (parts.at(0).compare("FILE_HEAD") == 0) {
+		string nameFile = parts.at(1);
+		string sizeString = parts.at(2);
+		cout << "reçu header file" << nameFile << " " << sizeString << endl;
+		return;
+	}
+
+	cout << "Erreur réseau. Paquet non reconnu : " << paquet << endl;
 }
 
 void NetworkManager::onPaquet_message(string message) {

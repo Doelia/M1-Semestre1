@@ -3,7 +3,6 @@
 
 #include "header-serveur.h"
 
-
 void* client_listeMessages(void* c);
 
 class ClientConnexion {

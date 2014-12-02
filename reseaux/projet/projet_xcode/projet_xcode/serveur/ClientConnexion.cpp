@@ -64,6 +64,11 @@ void ClientConnexion::onPaquet_get(string nameFile) {
 	if (FileManager::getInstance()->exists(nameFile)) {
 		cout << "Le fichier existe" << endl;
 		this->sendPaquet("REP_GET:1");
+
+		int size = FileManager::getInstance()->getSize(nameFile);
+		char sizeString[32];
+		sprintf(sizeString, "%d", size);
+		this->sendPaquet("FILE_HEAD:"+nameFile+":"+sizeString);
 	} else {
 		cout << "Le fichier demandé n'existe pas" << endl;
 		this->sendPaquet("REP_GET:0");

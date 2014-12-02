@@ -3,7 +3,6 @@
 
 #include "../commun/header-commun.h"
 #include "ClientConnexion.h"
-#include "Interface.h"
 
 #endif
 

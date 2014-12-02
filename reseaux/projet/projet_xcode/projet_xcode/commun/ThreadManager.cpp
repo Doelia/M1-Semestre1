@@ -20,7 +20,7 @@ void ThreadManager::add(pthread_t* t) {
 }
 
 void ThreadManager::display(string s) {
-	cout << s << endl;
+	cout << "[ThreadManager]" << s << endl;
 }
 
 void ThreadManager::joinAll() {

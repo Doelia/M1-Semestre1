@@ -1,3 +1,4 @@
+
 #include "NetworkManager.h"
 
 NetworkManager* NetworkManager::instance = NULL;
@@ -14,15 +15,16 @@ NetworkManager* NetworkManager::init() {
 bool NetworkManager::connectToServer(string ip, int port) {
     this->sock = socket(AF_INET, SOCK_STREAM, 0);
     
-    if (sock != -1) {
+    if (this->sock != -1) {
         
         struct sockaddr_in addr;
         addr.sin_addr.s_addr    = inet_addr(ip.c_str());
         addr.sin_family         = AF_INET;
         addr.sin_port           = htons(port);
         
-        cout << "Connexion à " << ip << ":" << port << "..." << endl;
-        if (::connect(sock, (sockaddr*)&addr, sizeof(addr)) != -1) {
+        Logger::getInstance()->getFlux() << "Connexion à " << ip << ":" << port << "..." << endl;
+       //	Logger::getInstance()->display();
+        if (::connect(this->sock, (sockaddr*)&addr, sizeof(addr)) != -1) {
             cout << "Connecté au seveur !\n";
             return true;
         }
@@ -50,11 +52,27 @@ void NetworkManager::start_listenMessages() {
 
 
 void NetworkManager::listenMessages() {
-	
+	char* buff;
+	initBuffer(&buff, 32);
+
+	cout << "En attente de messages..." << endl;
+	int retour;
+	while ((retour = recv(this->sock, buff, MAX_SIZE_PAQUETS, 0)) > 0) {
+		cout << "Message reçu : " << buff << endl;
+		this->onPaquet(buff);
+		initBuffer(&buff, 32);
+		cout << "En attente de messages..." << endl;
+	}
+    cout << "Fin d'attende de message." << endl;
 }
 
 void NetworkManager::onPaquet(string paquet) {
+	cout << "Paquet reçu du serveur : '" << paquet << "'" << endl;
 	vector<string> parts = split(paquet, ':');
+	if (parts.size() == 0) {
+		cout << "Erreur, paquet vide" << endl;
+		return;
+	}
 	if (parts.at(0) == "MSG") {
 		this->onPaquet_message(parts.at(1));
 	}
@@ -65,7 +83,7 @@ void NetworkManager::onPaquet_message(string message) {
 }
 
 bool NetworkManager::sendPaquet(string paquet) {
-	cout << "Tentative d'envoi du paquet " << paquet << endl;
+	cout << "Tentative d'envoi du paquet '" << paquet << "'" << endl;
 	char* buffer;
 	initBuffer(&buffer, 32);
 

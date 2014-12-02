@@ -20,15 +20,29 @@ void ClientConnexion::start_listenMessages() {
 void ClientConnexion::listenMessages() {
 	char* buff;
 	initBuffer(&buff, 32);
-
-	Interface::log("En attente de messages...");
 	int retour;
 	while ((retour = recv(this->sock, buff, MAX_SIZE_PAQUETS, 0)) > 0) {
-		cout << "Message reçu : " << buff << endl;
+		this->sendPaquet(buff);
 		initBuffer(&buff, 32);
-		Interface::log("En attente de messages...");
 	}
-    Interface::log("Fin d'attende de message.");
-
+    cout << "Fin d'attende de message." << endl;
 }
 
+int ClientConnexion::sendPaquet(string paquet) {
+	cout << "Tentative d'envoi du paquet '" << paquet << "' au serveur" << endl;
+
+	char* buffer;
+	initBuffer(&buffer, 32);
+
+	if (paquet.size() >= MAX_SIZE_PAQUETS) {
+		cout << "Paquet trop gros" << endl;
+		return false;
+	}
+
+	for (int i=0; i < paquet.size(); i++) {
+		buffer[i] = paquet.at(i);
+	}
+
+	int sock_err = send(this->sock, buffer, MAX_SIZE_PAQUETS, 0);
+	return true;
+}

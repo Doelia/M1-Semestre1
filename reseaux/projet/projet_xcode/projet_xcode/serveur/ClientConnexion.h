@@ -14,6 +14,7 @@ public:
 	ClientConnexion(int);
 	void listenMessages();
 	void start_listenMessages();
+	int sendPaquet(string s);
 
 };
 

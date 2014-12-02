@@ -17,36 +17,36 @@ int main() {
         int retourBind = ::bind(sock, (sockaddr*)&addr, sizeof(addr));
 		
 		if (retourBind != -1) {
-			Interface::log("Bind OK");
+			cout << "Bind OK" << endl;
 
 			int retourListen = listen(sock, 5);
 			if (retourListen != -1) {
-				Interface::log("listen() sur le port %d OK", PORT_SERVER);
+				cout << "listen() sur le port " << PORT_SERVER << " OK" << endl;
  
 				sockaddr_in addrClient;
 				socklen_t size = sizeof(addrClient);
 				int sockClient;
 
-				Interface::log("En attente de connexion...");
+				cout << "En attente de connexion..." << endl;
 				while ((sockClient = accept(sock, (sockaddr*)&addrClient, &size))) {
 
-					Interface::log("Un client se connecte avec la socket %d de %s:%d", sockClient, inet_ntoa(addrClient.sin_addr), htons(addrClient.sin_port));
+					cout << "Un client se connecte avec la socket " << sockClient << " de " << inet_ntoa(addrClient.sin_addr) << ": " << htons(addrClient.sin_port) << endl;
 					ClientConnexion* cc = new ClientConnexion(sockClient);
 					cc->start_listenMessages();
-					Interface::log("En attente de connexion...");
+					cout << "En attente de connexion..." << endl;
 				}
 			}
 			else {
-				Interface::log("Impossible d'écouter sur le port %d", PORT_SERVER);
+				cout << "Impossible d'écouter sur le port " << PORT_SERVER << endl;
 			}
 		}
 		else {
-			Interface::log("Bind de la socket sur le port %d impossible", PORT_SERVER);
+			cout << "Bind de la socket sur le port " << PORT_SERVER << " impossible" << endl;
 		}
 
 	}
 	else {
-		Interface::log("Erreur creation de socket");
+		cout << "Erreur creation de socket" << endl;
 	}
 
 

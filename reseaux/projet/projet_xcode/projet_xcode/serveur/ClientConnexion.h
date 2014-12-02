@@ -10,11 +10,13 @@ class ClientConnexion {
 
 private:
 	int sock;
+	void onPaquet(string);
+	void onPaquet_get(string);
 public:
 	ClientConnexion(int);
 	void listenMessages();
 	void start_listenMessages();
-	int sendPaquet(string s);
+	int sendPaquet(string);
 
 };
 

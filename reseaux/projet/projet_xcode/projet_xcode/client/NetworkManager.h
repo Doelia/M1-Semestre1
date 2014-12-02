@@ -12,17 +12,18 @@ public:
 	static NetworkManager* init();
 
 	bool connectToServer(string, int);
-	bool sendPaquet(string);
 	void start_listenMessages();
 	void listenMessages();
+	void sendGetFile(string);
 
 private:
 	static NetworkManager* instance;
+	
+	int sock;
 
 	void onPaquet(string);
 	void onPaquet_message(string);
-
-	int sock;
+	bool sendPaquet(string);
 
 };
 

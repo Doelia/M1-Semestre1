@@ -16,23 +16,22 @@ void ClientConnexion::start_listenMessages() {
 	ThreadManager::getInstance()->add(id);
 }
 
-
 void ClientConnexion::listenMessages() {
 	char* buff;
-	initBuffer(&buff, 32);
+	initBuffer(&buff, MAX_SIZE_PAQUETS);
 	int retour;
 	while ((retour = recv(this->sock, buff, MAX_SIZE_PAQUETS, 0)) > 0) {
-		this->sendPaquet(buff);
-		initBuffer(&buff, 32);
+		this->onPaquet(buff);
+		initBuffer(&buff, MAX_SIZE_PAQUETS);
 	}
-    cout << "Fin d'attende de message." << endl;
+	cout << "Fin d'attente de message." << endl;
 }
 
 int ClientConnexion::sendPaquet(string paquet) {
-	cout << "Tentative d'envoi du paquet '" << paquet << "' au serveur" << endl;
+	cout << "Tentative d'envoi du paquet '" << paquet << "' au client" << endl;
 
 	char* buffer;
-	initBuffer(&buffer, 32);
+	initBuffer(&buffer, MAX_SIZE_PAQUETS);
 
 	if (paquet.size() >= MAX_SIZE_PAQUETS) {
 		cout << "Paquet trop gros" << endl;
@@ -46,3 +45,28 @@ int ClientConnexion::sendPaquet(string paquet) {
 	int sock_err = send(this->sock, buffer, MAX_SIZE_PAQUETS, 0);
 	return true;
 }
+
+void ClientConnexion::onPaquet(string paquet) {
+	cout << "Paquet reçu du client : '" << paquet << "'" << endl;
+	vector<string> parts = split(paquet, ':');
+	if (parts.size() == 0) {
+		cout << "Erreur, paquet vide" << endl;
+		return;
+	}
+	if (parts.at(0) == "GET") {
+		this->onPaquet_get(parts.at(1));
+	}
+}
+
+void ClientConnexion::onPaquet_get(string nameFile) {
+	cout << "Le client veut le fichier " << nameFile << endl;
+
+	if (FileManager::getInstance()->exists(nameFile)) {
+		cout << "Le fichier existe" << endl;
+		this->sendPaquet("REP_GET:1");
+	} else {
+		cout << "Le fichier demandé n'existe pas" << endl;
+		this->sendPaquet("REP_GET:0");
+	}
+}
+

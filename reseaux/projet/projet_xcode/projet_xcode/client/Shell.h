@@ -9,11 +9,19 @@ public:
 	static Shell* getInstance();
 	static void init();
 
+	Shell();
+
 	void welcomeMsg();
 	void printPrompt();
+	void promptCommand();
+
+	void waitReponse();
+	void unlockShell();
 
 private:
+	int semid;
 	static Shell* instance;
+	void traiterCommand(string);
 
 };
 

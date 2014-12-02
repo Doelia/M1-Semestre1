@@ -3,6 +3,7 @@
 
 #include "../commun/header-commun.h"
 #include "ClientConnexion.h"
+#include "ServerManager.h"
+#include "FileManager.h"
 
 #endif
-

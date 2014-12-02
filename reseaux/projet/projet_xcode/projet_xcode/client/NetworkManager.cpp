@@ -22,8 +22,7 @@ bool NetworkManager::connectToServer(string ip, int port) {
         addr.sin_family         = AF_INET;
         addr.sin_port           = htons(port);
         
-        Logger::getInstance()->getFlux() << "Connexion à " << ip << ":" << port << "..." << endl;
-       //	Logger::getInstance()->display();
+       cout << "Connexion à " << ip << ":" << port << "..." << endl;
         if (::connect(this->sock, (sockaddr*)&addr, sizeof(addr)) != -1) {
             cout << "Connecté au seveur !\n";
             return true;
@@ -54,41 +53,51 @@ void NetworkManager::start_listenMessages() {
 void NetworkManager::listenMessages() {
 	char* buff;
 	initBuffer(&buff, 32);
-
-	cout << "En attente de messages..." << endl;
 	int retour;
 	while ((retour = recv(this->sock, buff, MAX_SIZE_PAQUETS, 0)) > 0) {
-		cout << "Message reçu : " << buff << endl;
 		this->onPaquet(buff);
 		initBuffer(&buff, 32);
-		cout << "En attente de messages..." << endl;
 	}
     cout << "Fin d'attende de message." << endl;
 }
 
 void NetworkManager::onPaquet(string paquet) {
-	cout << "Paquet reçu du serveur : '" << paquet << "'" << endl;
+	//cout << "Paquet reçu du serveur : '" << paquet << "'" << endl;
 	vector<string> parts = split(paquet, ':');
 	if (parts.size() == 0) {
 		cout << "Erreur, paquet vide" << endl;
 		return;
 	}
-	if (parts.at(0) == "MSG") {
+	if (parts.at(0).compare("MSG") == 0) {
 		this->onPaquet_message(parts.at(1));
+		return;
 	}
+
+	if (parts.at(0).compare("REP_GET") == 0) {
+		string reponse = parts.at(1);
+		if (reponse.compare("1") == 0) {
+			cout << "Fichier trouvé. Le transfert va démarrer." << endl;
+		} else {
+			cout << "Fichier introuvable. Veuillez vérifier le nom entré puis réésayez." << endl;
+		}
+		Shell::getInstance()->unlockShell();
+		return;
+	}
+
+	cout << "Erreur réseau : Paquet non reconnu" << endl;
 }
 
 void NetworkManager::onPaquet_message(string message) {
-	cout << "Message reçu du serveur : " << message << endl;
+	//cout << "Message reçu du serveur : " << message << endl;
 }
 
 bool NetworkManager::sendPaquet(string paquet) {
-	cout << "Tentative d'envoi du paquet '" << paquet << "'" << endl;
+	//cout << "Tentative d'envoi du paquet '" << paquet << "'" << endl;
 	char* buffer;
-	initBuffer(&buffer, 32);
+	initBuffer(&buffer, MAX_SIZE_PAQUETS);
 
 	if (paquet.size() >= MAX_SIZE_PAQUETS) {
-		cout << "Paquet trop gros" << endl;
+		cout << "Erreur. Paquet trop gros" << endl;
 		return false;
 	}
 
@@ -98,5 +107,9 @@ bool NetworkManager::sendPaquet(string paquet) {
 
 	int sock_err = send(this->sock, buffer, MAX_SIZE_PAQUETS, 0);
 	return true;
+}
+
+void NetworkManager::sendGetFile(string namefile) {
+	this->sendPaquet("GET:"+namefile);
 }
 

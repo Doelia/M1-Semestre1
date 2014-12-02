@@ -11,12 +11,14 @@ int main() {
     
     if (networkManager->connectToServer("127.0.0.1", PORT_SERVER)) {
         networkManager->start_listenMessages();
-        networkManager->sendPaquet("coucou 1");
-        networkManager->sendPaquet("coucou 2");
+
+        Shell::getInstance()->welcomeMsg();
+        Shell::getInstance()->promptCommand();
+        //networkManager->sendPaquet("coucou 1");
+        //networkManager->sendPaquet("coucou 2");
         sleep(1);
     }
 
     ThreadManager::getInstance()->joinAll();
-    
 }
 

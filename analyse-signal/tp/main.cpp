@@ -170,6 +170,15 @@ void test_fourier() {
 }
 
 int main() {
+	/**
+		Essais:
+			- Recopie de son
+			- Création de la note LA
+			- Génération d'une gamme
+			- Test fourier de base
+
+	**/
 	createLa();
 	test_fourier();
 }
+

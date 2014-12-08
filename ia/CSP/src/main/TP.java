@@ -41,6 +41,7 @@ public class TP {
 		
 		KnowledgeBase a = new KnowledgeBase("dependance.txt");
 		System.out.println(a);
+		a.saturer();
 		
 	}
 }

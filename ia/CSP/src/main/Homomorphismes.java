@@ -118,5 +118,10 @@ public class Homomorphismes {
 		return s.searchAllSolutions();
 	}
 	
+	@Override
+	public String toString() {
+		return "";
+	}
+	
 	
 }

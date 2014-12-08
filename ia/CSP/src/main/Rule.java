@@ -35,5 +35,9 @@ public class Rule {
 	public ArrayList<Atome> getLeftSide() {
 		return (ArrayList<Atome>) this.hyp.clone();
 	}
+
+	public Atome getConclusion() {
+		return this.clc;
+	}
 	
 }

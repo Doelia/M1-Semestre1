@@ -52,12 +52,43 @@ public class KnowledgeBase {
 		while (!fin) {
 			newFaits = new ArrayList<Atome>();
 			for (Rule r : this.rules) {
-				Homomorphismes h = new Homomorphismes(r.getLeftSide(), this.BF);
-				for (HashMap<String, Object> s : h.getHomomorphismes()) {
+				ArrayList<Atome> H = r.getLeftSide();
+				Atome C = r.getConclusion();
+				Homomorphismes h = new Homomorphismes(H, this.BF);
+				
+				for (HashMap<String, Object> S : h.getHomomorphismes()) {
+					Atome Sc = new Atome(C.getLabel(), null);
+					for (Terme t : C.getListeTermes()) {
+						Sc.ajoutTerme(new Terme((String) S.get(t.getLabel())));
+					}
+					
+					boolean contain = false;
+					for (Atome x : this.BF) {
+						if (x.equalsA(Sc)) {
+							contain = true;
+							break;
+						}
+					}
+					for (Atome x : newFaits) {
+						if (x.equalsA(Sc)) {
+							contain = true;
+							break;
+						}
+					}
+					
+					if (!contain) {
+						newFaits.add(Sc);
+					}
 					
 				}
 			}
+			if (newFaits.size() == 0) {
+				fin = true;
+			} else {
+				this.BF.addAll(newFaits);
+			}
 		}
+		System.out.println(this.BF);
 	}
 	
 	

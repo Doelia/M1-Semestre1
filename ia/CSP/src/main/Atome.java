@@ -62,6 +62,11 @@ public class Atome
    		}
 	}
 	
+	public Atome(String label, String x) {
+		this.label = label;
+		this.listeTermes = new ArrayList<Terme>();
+	}
+	
 	/**
 	 * Ajoute le terme 't' a la liste de termes de l'atome, sans autre verification
 	 * @param t le terme a ajouter

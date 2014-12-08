@@ -32,9 +32,15 @@ public class TP {
 		}
 		*/
 		
+		/*
+		
 		// HOMO
 		Homomorphismes h = new Homomorphismes("p(x,y);p(y,z);p(x,u);p(z,z);r(x);r(u)", "p(a,b);p(a,c);p(b,c);p(b,d);p(b,e);p(d,e);p(e,e);r(a);r(b);r(c)");
 		System.out.println("Ensemble de solutions : "+h.getHomomorphismes());
+		*/
+		
+		KnowledgeBase a = new KnowledgeBase("dependance.txt");
+		System.out.println(a);
 		
 	}
 }

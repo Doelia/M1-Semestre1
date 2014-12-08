@@ -1,0 +1,11 @@
+7
+r(a,b,c)
+r(b,b,c)
+r(b,c,d)
+p(a,b)
+p(c,d)
+p(e,f)
+p(e,e)
+2
+r(x1,y1,z1);p(x1,y1);p(y1,z1)
+p(x2,y2);p(y2,z2);p(x2,z2)
